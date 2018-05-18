@@ -1,0 +1,30 @@
+gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+gsettings set org.gnome.mutter overlay-key ''
+dconf write /org/gnome/evolution/mail/composer-no-signature-delim true
+
+sudo yum install yum-cron
+sudo vim /etc/yum/yum-cron.conf
+
+sudo iptables-restore < $(sudo cat /etc/iptables/iptables.rules)
+
+yum install gnome-tweak-tool gnome-themes.noarch bash-completion bash-completion-extras kernel-modules-extra qemu-kvm qemu-img virt-manager libvirt libvirt-python python-virtinst libvirt-client virt-install virt-viewer gksu vlc virt-top git yum-utils pavucontrol.x86_64 wine pv coreutils ipa-client httpd-manual xorg-x11-xauth kernel-core youtube-dl tripwire 
+
+sudo yum install -y rsyslog
+sudo systemctl is-enabled rsyslog
+
+
+sudo yum-config-manager --add-repo="http://dl.fedoraproject.org/pub/epel/beta/7/x86_64/"
+
+sudo su -c 'dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+su -c 'dnf -y install xorg-x11-drv-nouveau mesa-libGL.i686 mesa-dri-drivers.i686'
+
+tar xvf ../Downloads/Gnome-OSX-V-HSierra-light-menu--_2-themes.tar.xz
+mv 'Gnome-OSX-V-HSierra-light-menu-->2-themes'/ ~/.themes/HighSiera
+
+cd Downloads/Extra-IV/
+sudo cp fonts/* /usr/share/fonts/
+
+sudo yum install Downloads/ICAClient-rhel-13.9.1.6-0.x86_64.rpm
+sudo ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts
+
