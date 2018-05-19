@@ -19,7 +19,7 @@ if [ $count != 0 ]; then
     done
 fi
 
-if [ "`git status | grep clean | wc -l`" -ne "1" ]; then
+if [ "`git status | grep clean | wc -l`" -lt "1" ]; then
   git add --all
   git commit -am "Jenkins automated build"
 else
