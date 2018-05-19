@@ -1,0 +1,29 @@
+scp -o  StrictHostKeyChecking=no -i /home/jenkins/.ssh/id_rsa jenkins@192.168.4.247:~/zips/*.zip .
+
+cd "${WORKSPACE}"
+
+count=`ls -1 *.zip 2>/dev/null | wc -l`
+if [ $count != 0 ]; then
+	if ! [ -d zips ]; then
+    	mkdir zips
+	fi
+	mv *.zip zips/
+    cd zips
+    for i in `ls *.zip`; do
+    	release_dir=${i::3}
+        build_dir=${i::-4}
+    	if ! [ -d "${WORKSPACE}"/releases/$release_dir/$build_dir ]; then
+        	mkdir -p "${WORKSPACE}"/releases/$release_dir/$build_dir
+            unzip $i -d "${WORKSPACE}"/releases/$release_dir/$build_dir
+        fi
+    done
+fi
+
+if [ "`git status | grep clean | wc -l`" -ne "1" ]; then
+  git add --all
+  git commit -am "Jenkins automated build"
+else
+	exit 1
+
+fi
+
