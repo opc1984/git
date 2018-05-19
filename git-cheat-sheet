@@ -1,0 +1,37 @@
+HEAD~5 --> 5 commits a go
+HEAD^^^^^ --> 5 commits a go
+git clone -b blah/blah --> download local copy of remote branch in repo
+git init --> start git on this dir and subdirs
+git branch ---> show all branches
+git branch -d blah/blah --> create new branch
+git checkout -b blah/blah --> switch to branch
+git push -u origin blah/blah --> git push branch to remote repo
+git rebase -i HEAD~5 --> interactive rebase mode (to squash x commits to 1 to keep it logical)
+git rebase master --> sets current state of master as master in branch ( makes mess in reflog)
+git checkout master --> back to master to merge
+git merge blah/blah --> merge branch into master
+git reflog --> show all actions
+git rest --hard HEAD@{1} --> search for merge and redo/ undo merges etc
+git commit -am "" --> add and commit
+git log --oneline --> show all commits 
+git show {hash} --> show changes of commit
+git diff --> show changes thusfar
+git status --> see changes since last commit
+git checkout -- playbook.yml --> revert to status of last commit
+git branch -D blah/blah --> delete branch
+git difftool --> graphically show diff
+
+
+GITHUB …or create a new repository on the command line
+
+echo "# gitscripts" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/opc1984/gitscripts.git
+git push -u origin master
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/opc1984/gitscripts.git
+git push -u origin master
